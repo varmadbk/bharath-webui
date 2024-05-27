@@ -1,0 +1,20 @@
+# create pipeline
+name: bh app containarization pipeline
+# trigger - when this pipeline should start
+on:
+  push:
+    branches:
+      - "main"
+# jobs
+jobs:
+  bh-image-build:
+    runs-on: ubuntu-latest
+    # this server will be provisioned by github backend for this job
+    steps:
+      - name: run some basic commands on above servers
+        run: |
+          uname -r
+          whoami
+          cat /etc/os-release
+          docker version
+          docker-compose version
