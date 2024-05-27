@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   bh-webui:
-    image: bh-devweb:v2
+    image: bh-devweb:v3
     build: .
     container_name: bhc1
     ports:
