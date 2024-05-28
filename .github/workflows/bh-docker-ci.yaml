@@ -27,9 +27,9 @@ jobs:
           docker-compose up -d
           sleep 2
           docker-compose ps
-          
+
       - name: check sonar cube install
-        uses: sonarsource/sonarqube-scan-action@v2.1.0
+        uses: SonarSource/sonarqube-scan-action@v2.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONARTOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARHOST }}
