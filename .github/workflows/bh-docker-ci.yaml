@@ -30,6 +30,10 @@ jobs:
 
       - name: check sonar cube install
         uses: SonarSource/sonarqube-scan-action@v2.1.0
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey: bh-test-py
         env:
           SONAR_TOKEN: ${{ secrets.SONARTOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARHOST }}
