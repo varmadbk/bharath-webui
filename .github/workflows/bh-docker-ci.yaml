@@ -8,12 +8,11 @@ on:
 # jobs
 jobs:
   bh-image-build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # this server will be provisioned by github backend for this job
     steps:
       - name: run some basic commands on above servers
         run: |
-          uname -r
           whoami
           cat /etc/os-release
           docker version
