@@ -33,7 +33,7 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey: bh-test-py
+            -Dsonar.projectKey=bh-test-py
         env:
           SONAR_TOKEN: ${{ secrets.SONARTOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARHOST }}
