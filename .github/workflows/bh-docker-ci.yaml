@@ -4,7 +4,7 @@ name: bh app containarization pipeline
 on:
   push:
     branches:
-      - "main"
+      - "dev"
 # jobs
 jobs:
   bh-image-build:
