@@ -8,7 +8,7 @@ on:
 # jobs
 jobs:
   bh-sast-job:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: checking docker version and sonarscanner
         run: |
