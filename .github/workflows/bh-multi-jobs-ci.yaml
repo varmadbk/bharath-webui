@@ -4,24 +4,27 @@ name: bh app containarization pipeline
 on:
   push:
     branches:
-      - "dev1"
+      - "dev"
 # jobs
 jobs:
-  bh-checkjob:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checking only
-        run: |
-          echo "just checking"
-          whoami
   bh-sast-job:
     runs-on: self-hosted
-    needs: bh-checkjob
     steps:
       - name: checking docker version and sonarscanner
         run: |
           docker version
           sonar-scanner --version
+      - name: fetch git code
+        uses: actions/checkout@v4
+      - name: run sonar scan
+        uses: SonarSource/sonarqube-scan-action@v2.1.0
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=bh-test-py
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARTOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONARHOST }}
   bh-build-job:
     runs-on: macos-latest
     needs: bh-sast-job
