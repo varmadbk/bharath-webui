@@ -30,3 +30,4 @@ jobs:
         run: |
           echo "python version is"
           python -V
+          echo "test"
