@@ -1,0 +1,32 @@
+# create pipeline
+name: bh app containarization pipeline
+# trigger - when this pipeline should start
+on:
+  push:
+    branches:
+      - "dev"
+# jobs
+jobs:
+  bh-checkjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checking only
+        run: |
+          echo "just checking"
+          whoami
+  bh-sast-job:
+    runs-on: self-hosted
+    needs: bh-checkjob
+    steps:
+      - name: checking docker version and sonarscanner
+        run: |
+          docker version
+          sonar-scanner --version
+  bh-build-job:
+    runs-on: macos-latest
+    needs: bh-sast-job
+    steps:
+      - name: general message
+        run: |
+          echo "python version is"
+          python -V
