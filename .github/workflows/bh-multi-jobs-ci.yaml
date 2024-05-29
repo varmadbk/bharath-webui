@@ -30,7 +30,7 @@ jobs:
             !**/.git*
             !**/*.md
   bh-build-job:
-    runs-on: unix-latest
+    runs-on: ubuntu-latest
     needs: bh-sast-job
     steps:
       - name: general message
