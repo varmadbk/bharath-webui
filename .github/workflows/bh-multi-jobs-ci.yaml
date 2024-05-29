@@ -21,12 +21,38 @@ jobs:
         run: |
           pwd
           sonar-scanner -D"sonar.projectKey=bh-test-py" -D"sonar.sources=." -D"sonar.host.url=http://44.219.46.64:9000" -D"sonar.token=sqp_7255566d38192f9d2253791c7c31ec72798a5fb8"
+      - name: use upload atrifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bh-artifact
+          path: |
+            .
+            !**/.git*
+            !**/*.md
   bh-build-job:
     runs-on: macos-latest
     needs: bh-sast-job
     steps:
       - name: general message
         run: |
-          echo "python version is"
-          python -V
-          echo "test"
+          echo "checking docker details"
+          docker version
+          docker-compose version
+      - name: downloading artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: bh-artifact
+          path: .
+      - name: docker compose to build and test
+        run: |
+          ls -a
+          docker-compose up -d --build
+          sleep 2
+          docker-compose ps
+      - name: verify health check page
+        run: |
+          echo "checking health"
+          curl -f http://localhost:1234/health.html
+
+    
+          
