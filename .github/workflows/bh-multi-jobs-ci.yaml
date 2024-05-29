@@ -16,19 +16,10 @@ jobs:
           sonar-scanner --version
       - name: fetch git code
         uses: actions/checkout@v4
-      #- name: run sonar scan
-      #  uses: SonarSource/sonarqube-scan-action@v2.1.0
-      #  with:
-       #   projectBaseDir: .
-        #  args: >
-         #   -Dsonar.projectKey=bh-test-py
-        #env:
-         # SONAR_TOKEN: ${{ secrets.SONARTOKEN }}
-         # SONAR_HOST_URL: ${{ secrets.SONARHOST }}
+      
       - name: run sonar locally
         run: |
           pwd
-     #     sonar-scanner.bat -D"sonar.projectKey=bh-test-project" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqp_9a3df7885b0d8253c51305199f4e27a222eaf0c3"
           sonar-scanner -Dsonar.projectKey=bh-test-py -Dsonar.sources=. -Dsonar.host.url=http://44.219.46.64:9000 -Dsonar.token=sqp_7255566d38192f9d2253791c7c31ec72798a5fb8
   bh-build-job:
     runs-on: macos-latest
